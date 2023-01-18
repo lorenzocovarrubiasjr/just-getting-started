@@ -1,12 +1,9 @@
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Platform,
-  StatusBar,
-} from "react-native";
-import React from "react";
-import UserMiniDisplay from "../components/UserMiniDisplay";
+import React, { useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
+import ItemSummary from "../components/ItemSummary";
+import Screen from "../components/Screen";
+import ListItemSeperator from "../components/ListItemSeperator";
+import ItemSummaryDeleteAction from "../components/ItemSummaryDeleteAction";
 
 const messages = [
   {
@@ -30,27 +27,45 @@ const messages = [
 ];
 
 const MessagesScreen = () => {
+  const [items, setItems] = useState(messages);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleDelete = ({ id }) => {
+    console.log();
+    setItems(items.filter((_item) => _item.id !== id));
+  };
+
+  const handleRefresh = () => {
+    console.log("Refreshing");
+    setRefreshing(true);
+    setItems([messages[2]]);
+    setRefreshing(false);
+  };
+
   return (
-    <SafeAreaView style={styles.screen}>
+    <Screen>
       <FlatList
-        data={messages}
-        keyExtractor={(message) => message.id.toString()}
+        data={items}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <UserMiniDisplay
+          <ItemSummary
             title={item.title}
             description={item.description}
             image={item.image}
+            onPress={() => console.log("Message Selected: ", item.title)}
+            renderRightActions={() => (
+              <ItemSummaryDeleteAction onPress={() => handleDelete(item)} />
+            )}
           />
         )}
+        ItemSeparatorComponent={ListItemSeperator}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
       />
-    </SafeAreaView>
+    </Screen>
   );
 };
 
 export default MessagesScreen;
 
-const styles = StyleSheet.create({
-  screen: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-});
+const styles = StyleSheet.create({});

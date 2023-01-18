@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
-import UserMiniDisplay from "../components/UserMiniDisplay";
+import ItemSummary from "../components/ItemSummary";
 
 const ListingDetailsScreen = () => {
   return (
@@ -11,7 +11,7 @@ const ListingDetailsScreen = () => {
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>White Couch</AppText>
         <AppText style={styles.price}>$250</AppText>
-        <UserMiniDisplay
+        <ItemSummary
           title="Witeout"
           description="29 Listings"
           image={require("../assets/Lorenzo-profile-pic.png")}
