@@ -17,13 +17,29 @@ import Card from "./app/components/Card";
 import Screen from "./app/components/Screen";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
+import LoginScreen from "./app/screens/LoginScreen";
+
+const categories = [
+  { label: "Clothing", value: 1 },
+  { label: "Furniture", value: 2 },
+  { label: "Music", value: 3 },
+];
 
 export default function App() {
   const [firstName, setFirstName] = useState("");
+  const [category, setCategory] = useState();
+
   return (
     <Screen style={styles.container}>
-      <AppTextInput placeholder="Placeholder here." icon="email"></AppTextInput>
-      <AppPicker placeholder="Categories" icon="apps" />
+      <LoginScreen />
+      {/* // <AppTextInput placeholder="Placeholder here." icon="email"></AppTextInput>
+      // <AppPicker
+      //   items={categories}
+      //   selectedItem={category}
+      //   onSelectItem={(item) => setCategory(item)}
+      //   placeholder="Categories"
+      //   icon="apps"
+      // /> */}
     </Screen>
   );
 }
