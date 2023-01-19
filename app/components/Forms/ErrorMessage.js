@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import AppText from "./AppText";
+import AppText from "../AppText";
 
-import defaultStyles from "../config/styles";
+import defaultStyles from "../../config/styles";
 
 const ErrorMessage = ({ error, visible }) => {
   if (!visible || !error) return null;
