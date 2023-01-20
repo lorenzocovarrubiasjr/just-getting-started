@@ -14,14 +14,16 @@ const messages = [
   },
   {
     id: 2,
-    title: "Testing this title",
+    title:
+      "Testing this title Testing this title Testing this title Testing this title",
     description: "Testing the description the best that I can",
     image: require("../assets/couch.jpg"),
   },
   {
     id: 3,
     title: "Testing this title",
-    description: "Testing the description the best that I can",
+    description:
+      "Testing the description the best that I can Testing the description the best that I can Testing the description the best that I can Testing the description the best that I can Testing the description the best that I can Testing the description the best that I can",
     image: require("../assets/chair.jpg"),
   },
 ];

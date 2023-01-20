@@ -4,7 +4,8 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AppText from "./AppText";
-import colors from "../config/colors";
+import defaultStyles from "../config/styles";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const ItemSummary = ({
   title,
@@ -17,14 +18,28 @@ const ItemSummary = ({
   return (
     <GestureHandlerRootView>
       <Swipeable renderRightActions={renderRightActions}>
-        <TouchableHighlight underlayColor={colors.accent} onPress={onPress}>
+        <TouchableHighlight
+          underlayColor={defaultStyles.colors.accent}
+          onPress={onPress}
+        >
           <View style={styles.container}>
             {IconComponent}
             {image && <Image style={styles.image} source={image} />}
             <View style={styles.details}>
-              <AppText style={styles.title}>{title}</AppText>
-              {description && <AppText>{description}</AppText>}
+              <AppText style={styles.title} numberOfLines={1}>
+                {title}
+              </AppText>
+              {description && (
+                <AppText style={styles.description} numberOfLines={2}>
+                  {description}
+                </AppText>
+              )}
             </View>
+            <MaterialCommunityIcons
+              color={defaultStyles.colors.darkGrayFont}
+              name="chevron-right"
+              size={25}
+            />
           </View>
         </TouchableHighlight>
       </Swipeable>
@@ -39,7 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 70,
     alignItems: "center",
-    backgroundColor: colors.whiteBackground,
+    backgroundColor: defaultStyles.colors.whiteBackground,
     paddingHorizontal: 20,
   },
   image: {
@@ -50,9 +65,13 @@ const styles = StyleSheet.create({
   details: {
     paddingLeft: 12,
     justifyContent: "center",
+    flex: 1,
   },
   title: {
     fontWeight: "bold",
     fontSize: 16,
+  },
+  description: {
+    fontSize: 13,
   },
 });

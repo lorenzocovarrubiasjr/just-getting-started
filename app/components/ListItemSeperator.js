@@ -14,5 +14,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 2,
     backgroundColor: colors.accent,
+    marginVertical: 8,
   },
 });
